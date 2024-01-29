@@ -18,8 +18,6 @@ const genbutt = {
 
 
 const copyEl = document.querySelector(".copyIMG");
-const buttonElCopy = document.createElement("button");
-buttonElCopy.className = "copy"
 
 const copybutt = {
     isClicked: false,
@@ -35,6 +33,7 @@ generatorEl.appendChild(buttonElGen);
 buttonElGen.addEventListener('click', () => {
     // debugger;
     genbutt.isClicked = true
+    copyEl.style.opacity = '1'
 
     if (genbutt.isClicked) {
 
@@ -54,17 +53,18 @@ buttonElGen.addEventListener('click', () => {
         ssn += `${area}-${group}-${serial}`;
         text.innerText = ssn;
         textEl.appendChild(text);
-        copyEl.appendChild(buttonElCopy);
+        // copyEl.appendChild(buttonElCopy);
     }
 
 
 
 });
 
-buttonElCopy.addEventListener('click', () => { 
+copyEl.addEventListener('click', async () => {
     copybutt.isClicked = true
-    
- });
+    copyEl.style.opacity = '0.4'
+    navigator.clipboard.writeText(ssn)
+});
 
 
 
